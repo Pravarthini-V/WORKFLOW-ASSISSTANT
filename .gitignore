@@ -1,59 +1,496 @@
-# Dependencies
+# ███████╗██╗████████╗    ██╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗
+# ██╔════╝██║╚══██╔══╝    ██║██╔════╝ ████╗  ██║██╔═══██╗██╔══██╗██╔════╝
+# █████╗  ██║   ██║       ██║██║  ███╗██╔██╗ ██║██║   ██║██████╔╝█████╗  
+# ██╔══╝  ██║   ██║       ██║██║   ██║██║╚██╗██║██║   ██║██╔══██╗██╔══╝  
+# ██║     ██║   ██║       ██║╚██████╔╝██║ ╚████║╚██████╔╝██║  ██║███████╗
+# ╚═╝     ╚═╝   ╚═╝       ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
+# Workflow Assistant - Complete Git Ignore File
+# ======================================================================
+
+# ────────────────────────── DEPENDENCIES ──────────────────────────
+# Node modules (NEVER commit these - they're huge!)
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
 yarn.lock
+pnpm-lock.yaml
 
-# Environment variables
+# ────────────────────────── ENVIRONMENT VARIABLES ──────────────────────────
+# CONTAINS SECRETS - NEVER COMMIT!
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
+.env.production
+.env.test
+.env.staging
+.env.*.local
+*.env
+!.env.example          # Keep this template file
+!.env.sample
 
-# Build outputs
+# ────────────────────────── BACKEND SPECIFIC ──────────────────────────
+# Express/Node.js backend
+backend/node_modules/
+backend/package-lock.json
+backend/yarn.lock
+backend/dist/
+backend/build/
+backend/logs/
+backend/*.log
+backend/.env
+backend/.env.local
+backend/.env.production
+backend/coverage/
+backend/.nyc_output/
+backend/*.pid
+backend/*.seed
+backend/*.pid.lock
+
+# ────────────────────────── FRONTEND SPECIFIC ──────────────────────────
+# React/Vite frontend
+src/node_modules/
+src/package-lock.json
+src/yarn.lock
 dist/
 build/
 out/
 *.tsbuildinfo
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-*.sublime-*
-
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-debug.log
-logs/
-*.log
-
-# Testing
-coverage/
-.nyc_output/
-*.test.js.snap
-
-# Cache files
 .eslintcache
 .cache/
 .temp/
+public/assets/
+src/coverage/
+src/.nyc_output/
 
-# OS generated files
-Thumbs.db
+# ────────────────────────── DATABASE ──────────────────────────
+# NEVER commit database files with real data
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.wal
+*.sql
+*.dump
+*.backup
+*.bak
+database.sqlite
+database/*.db
+database/backups/
+database/data/
+database/migrations/*.js
+database/seeds/*.js
+*.db-wal
+*.db-shm
+!database/schema.sql    # Keep schema but not data
+!database/migrations/README.md
+
+# ────────────────────────── BUILD OUTPUTS ──────────────────────────
+# Compiled/generated files
+dist/
+build/
+out/
+release/
+target/
+*.js.map
+*.css.map
+*.min.js
+*.min.css
+bundle.js
+bundle.css
+*.tsbuildinfo
+*.tgz
+*.tar.gz
+*.zip
+
+# ────────────────────────── IDE AND EDITOR ──────────────────────────
+# Personal IDE settings
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json.example
+.idea/
+*.sublime-*
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.vs/
+*.code-workspace
+
+# ────────────────────────── OS FILES ──────────────────────────
+# Operating system junk
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 ehthumbs.db
+Thumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+*.lnk
+.AppleDouble
+.LSOverride
+Icon
+._*
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
 
-# Project specific
-.DS_Store
+# ────────────────────────── LOGS AND DEBUG ──────────────────────────
+# Log files (can contain sensitive data)
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+debug.log
+combined.log
+error.log
+access.log
+*.pid
+*.seed
+*.pid.lock
+debug-*.log
+trace-*.log
+
+# ────────────────────────── TESTING ──────────────────────────
+# Test coverage and reports
+coverage/
+.nyc_output/
+*.lcov
+*.test.js
+*.spec.js
+*.test.ts
+*.spec.ts
+*.test.js.snap
+*.test.ts.snap
+.tern-port
+.cache/
+.temp/
+test-results/
+junit.xml
+test-report.xml
+
+# ────────────────────────── CACHE FILES ──────────────────────────
+# Various cache directories
+.eslintcache
+.cache/
+.temp/
+.tmp/
+*.tscache
+.rush/
+.parcel-cache/
+.mypy_cache/
+.pycache/
+*.pyc
+__pycache__/
+
+# ────────────────────────── SECURITY ──────────────────────────
+# NEVER commit these!
+*.pem
+*.key
+*.crt
+*.csr
+*.pfx
+*.p12
+secrets/
+keys/
+certificates/
+.htpasswd
+.htaccess
+ssl/
+ssl-private/
+*.keystore
+*.jks
+*.cer
+
+# ────────────────────────── DOCKER ──────────────────────────
+# Docker files (if used)
+docker-compose.override.yml
+Dockerfile.dev
+*.dockerignore
+.docker/
+docker-compose.dev.yml
+docker-compose.local.yml
+*.pid
+
+# ────────────────────────── DEPLOYMENT ──────────────────────────
+# Deployment platform files
+.vercel
+.netlify
+.vercel.json
+netlify.toml
+*.env.build
+.firebase/
+.firebaserc
+firebase-debug.log
+*.service
+*.socket
+
+# ────────────────────────── BACKUP FILES ──────────────────────────
+# Backup and temporary files
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+*.swn
+*.pid
+*.seed
+
+# ────────────────────────── ARCHIVES ──────────────────────────
+# Compressed files (usually downloaded)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.dmg
+*.iso
+*.tar
+*.gz
+
+# ────────────────────────── RUNTIME DATA ──────────────────────────
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+.runtimeconfig.json
+.rpt2_cache/
+.tscache/
+
+# ────────────────────────── DOCUMENTATION ──────────────────────────
+# Generated documentation
+docs/_build/
+docs/_site/
+docs/api/
+*.pdf
+*.epub
+!.gitkeep
+
+# ────────────────────────── UPLOADS ──────────────────────────
+# User uploaded content
+/uploads/
+/downloads/
+/temp-uploads/
+/public/uploads/
+/private/
+/storage/
+/public/storage/
+
+# ────────────────────────── PROJECT SPECIFIC ──────────────────────────
+# Workflow Assistant specific files
+/backups/
+/data/
 *.local
-backup/
-temp/
+*.pid
+*.seed
+public/uploads/
+temp-uploads/
+*.session
+*.token
+*.jwt
+workflow-exports/
+*.workflow
+
+# ────────────────────────── EXCEPTIONS - KEEP THESE ──────────────────────────
+# Files we WANT to track in git
+!*.example
+!*.sample
+!README.md
+!LICENSE
+!.gitkeep
+!.gitignore
+!.env.example
+!.env.sample
+!database/schema.sql
+!database/migrations/README.md
+!public/favicon.ico
+!public/robots.txt
+!public/.htaccess.example
+!src/components/README.md
+!backend/README.md
+
+# ────────────────────────── EDITOR CONFIGS - KEEP EXAMPLES ──────────────────────────
+# Keep example configs but not actual user settings
+!.vscode/extensions.json
+!.vscode/launch.json.example
+!.vscode/settings.json.example
+!.idea/README.md
+
+# ────────────────────────── APPLICATION SPECIFIC ──────────────────────────
+# App-specific files to ignore
+*.log.*
+npm-debug.*
+yarn-error.*
+.pnpm-debug.*
+.lock
+*.lock
+.history/
+*.tgz
+*.nupkg
+*.msi
+*.msm
+*.msp
+
+# ────────────────────────── GRAPHQL ──────────────────────────
+# GraphQL generated files
+__generated__/
+graphql/generated/
+*.graphql.ts
+*.graphql.js
+
+# ────────────────────────── TYPEORM ──────────────────────────
+# TypeORM migrations (if using TypeORM)
+src/migrations/*.js
+src/migrations/*.ts
+!src/migrations/README.md
+
+# ────────────────────────── PRISMA ──────────────────────────
+# Prisma (if using Prisma)
+prisma/*.db
+prisma/*.db-journal
+prisma/.env
+prisma/migrations/*.js
+!prisma/schema.prisma
+
+# ────────────────────────── SEQUELIZE ──────────────────────────
+# Sequelize (if using Sequelize)
+config/config.json
+!.env.example
+
+# ────────────────────────── JEST ──────────────────────────
+# Jest testing
+coverage/
+.nyc_output/
+jest.config.js
+!jest.config.example.js
+
+# ────────────────────────── CYPRESS ──────────────────────────
+# Cypress testing
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+cypress/results/
+!cypress/fixtures/
+!cypress/integration/
+
+# ────────────────────────── STORYBOOK ──────────────────────────
+# Storybook
+storybook-static/
+node_modules/.cache/storybook/
+
+# ────────────────────────── NEXT.JS ──────────────────────────
+# Next.js specific (if using Next.js)
+.next/
+out/
+build/
+*.next
+
+# ────────────────────────── NUXT.JS ──────────────────────────
+# Nuxt.js specific (if using Nuxt)
+.nuxt/
+dist/
+
+# ────────────────────────── VITE ──────────────────────────
+# Vite specific
+*.tsbuildinfo
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# ────────────────────────── WEBPACK ──────────────────────────
+# Webpack
+stats.json
+*.stats.json
+
+# ────────────────────────── ESLINT ──────────────────────────
+# ESLint cache
+.eslintcache
+.eslintrc.js
+!.eslintrc.example.js
+
+# ────────────────────────── PRETTIER ──────────────────────────
+# Prettier
+.prettierrc.js
+!.prettierrc.example.js
+
+# ────────────────────────── HUSKY ──────────────────────────
+# Husky
+.husky/
+!.husky/README.md
+!.husky/.gitignore
+
+# ────────────────────────── LERNA ──────────────────────────
+# Lerna
+lerna-debug.log
+lerna.json
+!.lerna.json.example
+
+# ────────────────────────── NX ──────────────────────────
+# Nx
+nx.json
+!.nx.json.example
+.nx/cache/
+.nx/workspace-data/
+
+# ────────────────────────── TURBOREPO ──────────────────────────
+# Turborepo
+.turbo/
+node_modules/.cache/turbo/
+
+# ────────────────────────── CHANGELOG ──────────────────────────
+# Changelog (if auto-generated)
+CHANGELOG.md
+!.CHANGELOG.example.md
+
+# ────────────────────────── VERSION FILES ──────────────────────────
+# Version files
+.version
+.release-version
+*.version
+
+# ────────────────────────── SECURITY SCAN REPORTS ──────────────────────────
+# Security scan outputs
+security-reports/
+dependency-check-report.html
+owasp-report.html
+snyk-report.html
+
+# ────────────────────────── FINAL SAFETY ──────────────────────────
+# Ensure these patterns are always ignored
+**/.env
+**/.env.*
+**/secrets/**
+**/keys/**
+**/certificates/**
+**/*.pem
+**/*.key
+**/*.crt
+**/*.csr
+**/node_modules/**
+**/dist/**
+**/build/**
+**/coverage/**
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/*.pid
+**/*.seed
+**/*.pid.lock
+
+# ────────────────────────── THE END ──────────────────────────
+# Happy coding! 🚀
